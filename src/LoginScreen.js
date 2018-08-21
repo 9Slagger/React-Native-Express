@@ -51,7 +51,7 @@ class LoginScreen extends Component {
         const data = { username: username, password: password }
 
 
-        axios.post('http://localhost:8082/api/v1/login', data)
+        axios.post('http://192.168.1.24:8082/api/v1/login', data)
             .then(async response => {
                 const result = response.data
                 if (result.result == "success") {

@@ -1,6 +1,6 @@
 var jwt = require('jsonwebtoken');
 
-const secretKey = "www.codemobiles.com"
+const secretKey = "key1234"
 
 function getToken(json) {
   return token = jwt.sign(json, secretKey, {

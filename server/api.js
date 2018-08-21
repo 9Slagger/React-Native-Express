@@ -27,15 +27,8 @@ app.post('/register', (req, res) => {
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   req.body.password = hashedPassword;
 
-  // var values = [
-  //   [req.body.username, req.body.password]
-  // ];
-  //start
-  // var sql = `INSERT INTO users (username, password) VALUES ?`;
-
   var person = new User({ username: req.body.username, password: req.body.password });
   person.save(function (err, data) {
-    // database.conn.query(`INSERT INTO users (username, password) VALUES ?`, [values], function (err, result) {
     if (err) {
       res.json(result_failed);
     } else {
@@ -47,7 +40,6 @@ app.post('/register', (req, res) => {
       console.log("1 record inserted");
     }
   });
-  //end
 });
 
 app.post('/login', (req, res) => {
@@ -60,9 +52,7 @@ app.post('/login', (req, res) => {
              password 
              FROM users 
              where username = '${req.body.username}'`;
-
-  // database.conn.query(sql, function (err, result) {
-
+             
   User.find({ 'username': req.body.username}, (err, result) => {
 
     if (err) {

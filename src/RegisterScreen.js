@@ -28,7 +28,7 @@ class RegisterScreen extends Component {
             const { username, password } = this.state
             const data = { username: username, password: password }
 
-            axios.post('http://localhost:8082/api/v1/register',
+            axios.post('http://192.168.1.24:8082/api/v1/register',
                 data)
                 .then((response)=> {
                     const result = response.data.result
