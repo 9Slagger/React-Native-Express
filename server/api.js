@@ -98,7 +98,7 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/feed', verifyToken, (req, res) => {
-  res.json({ result: "success" })
+  res.json({ result: "success" + res.username})
 });
 
 module.exports = app;
