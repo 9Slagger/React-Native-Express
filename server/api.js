@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express.Router();
-const database = require("./db_config");
 var bcrypt = require('bcryptjs');
 const { getToken, verifyToken } = require('./jwtHandler');
 
