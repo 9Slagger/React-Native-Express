@@ -2,17 +2,8 @@ const express = require('express');
 const app = express.Router();
 var bcrypt = require('bcryptjs');
 const { getToken, verifyToken } = require('./jwtHandler');
-
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/shopper');
-mongoose.Promise = global.Promise;
-
-var userSchema = mongoose.Schema({
-  username: String,
-  password: String,
-});
-
-var User = mongoose.model('User', userSchema);
+const moongoose = require('./db_config')
+const User = require('./model/usersModel')
 
 // --------------------------------------------
 
@@ -23,7 +14,6 @@ const result_failed = {
 
 app.post('/register', (req, res) => {
   console.log(req.body);
-  const obj = req.body;
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   req.body.password = hashedPassword;
 
@@ -44,14 +34,6 @@ app.post('/register', (req, res) => {
 
 app.post('/login', (req, res) => {
   console.log(req.body);
-  const obj = req.body;
-
-  var sql = `SELECT 
-             id,             
-             username, 
-             password 
-             FROM users 
-             where username = '${req.body.username}'`;
              
   User.find({ 'username': req.body.username}, (err, result) => {
 
