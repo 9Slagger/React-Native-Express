@@ -19,14 +19,15 @@ class RegisterScreen extends Component {
         super(props)
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            type: "member"
         }
     }
 
     async onRegisterPressed() {
         try {
-            const { username, password } = this.state
-            const data = { username: username, password: password }
+            const { username, password, type } = this.state
+            const data = { username: username, password: password, type: type}
 
             axios.post('http://192.168.1.24:8082/api/v1/register',
                 data)
@@ -56,7 +57,6 @@ class RegisterScreen extends Component {
         }
 
     }
-
 
     render() {
 

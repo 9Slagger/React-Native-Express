@@ -9,7 +9,8 @@ import {
     Text,
     Image,
     View,
-    ScrollView
+    ScrollView,
+    Platform
 } from 'react-native';
 
 import axios from 'axios'

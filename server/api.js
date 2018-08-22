@@ -17,14 +17,14 @@ app.post('/register', (req, res) => {
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   req.body.password = hashedPassword;
 
-  var person = new User({ username: req.body.username, password: req.body.password });
+  var person = new User({ username: req.body.username, password: req.body.password, type: req.body.type});
   person.save(function (err, data) {
     if (err) {
       res.json(result_failed);
     } else {
       const finalResult = {
         result: "success",
-        data: ""
+        data: " "
       };
       res.json(finalResult);
       console.log("1 record inserted");
@@ -59,7 +59,7 @@ app.post('/login', (req, res) => {
       } else {
         const finalResult = {
           result: "failed",
-          data: ""
+          data: " "
         };
         console.log(JSON.stringify(finalResult));
         res.json(finalResult);
@@ -70,7 +70,7 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/feed', verifyToken, (req, res) => {
-  res.json({ result: "success" + res.username})
+  res.json({ result: "success " + res.username})
 });
 
 module.exports = app;
