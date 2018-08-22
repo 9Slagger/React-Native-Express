@@ -84,7 +84,7 @@ class LoginScreen extends Component {
             <ScrollView style={styles.scrollView}>
                 <View style={styles.container}>
                     <Image
-                        source={require('./imgs/codemobiles_logo.png')}
+                        source={require('./imgs/dental.jpg')}
                         resizeMode={'center'}
                         style={styles.banner}
                     />
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
         paddingTop: 80
     },
     banner: {
-        height: 90,
+        height: 180,
         width: '100%'
     },
     input: {
