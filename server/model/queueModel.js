@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var queueSchema = mongoose.Schema({
-    orderqueue: String,
-    room: String,
-    users_id: String,
+var queueSchema = Schema({
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
+    title: String,
 });
 
 var Queue = mongoose.model('Queue', queueSchema);

@@ -16,10 +16,16 @@ function verifyToken(req, res, next) {
   jwt.verify(token, secretKey, function (err, decoded) {
     if (err)
       return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
-    // if everything good, save to request for use in other routes
-    // req.username = decoded.username;
-    req.$id = decoded.id
-    next();
+    else {
+      // เริ่มส่วนที่จะดัดแปลง
+      // คิดว่าจะดัดแปลงให้ var data = User.find(id: decoded.id)
+      // แล้วส่ง res data ไปให้ api เพื่อให้ได้ข้อมูลที่ครบและ เป็น object
+      res.username = decoded.username
+      res.id = decoded.id
+      res.type = decoded.type
+      // จบส่วนที่จะดัดแปลง
+      next();
+    }
   });
 }
 
