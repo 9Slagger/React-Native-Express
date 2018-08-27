@@ -4,8 +4,6 @@ import RegisterScreen from './RegisterScreen';
 import HomeScreen from './HomeScreen';
 import { createStackNavigator } from 'react-navigation';
 
-
-
 const RootStack = createStackNavigator({
   Login: {
     screen: LoginScreen

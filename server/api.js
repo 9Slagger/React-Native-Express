@@ -94,6 +94,14 @@ app.post('/queue', verifyToken, (req, res) => {
   else res.json({ result: "error" })
 });
 
+// ---------- ค้าหา queue ทั้งหมด
+app.get('/queue', verifyToken, (req, res) => {
+  Queue.find().exec(function (err, data) {
+    if (err) return handleError(err);
+    else res.status(200).json(data)
+  })
+})
+
 // ---------- feed
 
 app.get('/feed', verifyToken, (req, res) => {
