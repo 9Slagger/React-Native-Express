@@ -35,7 +35,7 @@ class HomeScreen extends Component {
     this.state = { feedData: "loading.." }
     const token = await AsyncStorage.getItem("token")
 
-    axios.get('http://192.168.1.24:8082/api/v1/feed',
+    axios.get('http://192.168.1.2:8082/api/v1/feed',
       { headers: { 'x-access-token': token } })
       .then(response => {
         const result = response.data.result
