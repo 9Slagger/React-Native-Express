@@ -79,8 +79,6 @@ class LoginScreen extends Component {
         this.props.navigation.navigate("Register")
     }
 
-    
-
 
     render() {
         return (
