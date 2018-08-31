@@ -10,7 +10,8 @@ import {
     Image,
     View,
     ScrollView,
-    Platform
+    Platform,
+    FlatList
 } from 'react-native';
 
 import axios from 'axios'
@@ -25,11 +26,24 @@ class LoginScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            isLoading: true,
+            dataSource: [],
             username: "",
             password: ""
         }
 
         this.validAuthen()
+    }
+
+    componentDidMount() {
+        axios.get("http://192.168.1.15:8082/api/v1/test")
+            .then((response) => {
+                this.setState({
+                    isLoading: false,
+                    dataSource: response.data.movies
+                });
+                console.log(response.data.movies)
+            })
     }
 
     async validAuthen() {
@@ -39,12 +53,12 @@ class LoginScreen extends Component {
         }
     }
 
-    goHomeScreen(){
+    goHomeScreen() {
         const resetAction = StackActions.reset({
             index: 0,
             actions: [NavigationActions.navigate({ routeName: 'Home' })],
-          });
-          this.props.navigation.dispatch(resetAction);
+        });
+        this.props.navigation.dispatch(resetAction);
     }
 
     async onLoginPressed() {
@@ -124,6 +138,12 @@ class LoginScreen extends Component {
                             Dont' have an account, Register?
                          </Text>
                     </TouchableHighlight>
+
+                    <FlatList
+                        data={this.state.dataSource}
+                        renderItem={({ item }) => <Text>{item.title}, {item.releaseYear}</Text>}
+                        keyExtractor={(item, index) => index}
+                    />
 
                 </View>
             </ScrollView>

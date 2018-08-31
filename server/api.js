@@ -1,12 +1,10 @@
-const express = require('express');
-const app = express.Router();
-var bcrypt = require('bcryptjs');
-const { getToken, verifyToken } = require('./jwtHandler');
+const express = require('express')
+const app = express.Router()
+var bcrypt = require('bcryptjs')
+const { getToken, verifyToken } = require('./jwtHandler')
 const mongoose = require('./db_config')
 const User = require('./model/usersModel')
 const Queue = require('./model/queueModel')
-const Person = require('./model/personModel')
-const Story = require('./model/storyModel')
 
 // --------------------------------------------
 
@@ -82,7 +80,7 @@ app.post('/login', (req, res) => {
 // ----------สร้าง Queue
 app.post('/queue', verifyToken, (req, res) => {
   if (res.type === 'member' || res.type === 'employee') {
-    var queue = new Queue({
+    let queue = new Queue({
       title: req.body.title || "Dental",
       author: res.id
     })
@@ -118,40 +116,15 @@ app.get('/myuser', verifyToken, (req, res) => {
   })
 });
 
-//
+let queue = new Queue({
+  title: "Dental",
+  author: "5b814841cd485844831d8638",
+  record_date: new Date(),
+  priority: 1,
+})
+queue.save(function (err) {
+  console.log("new Queue Success")
+});
 
-var infomation = {
-  "title": "The Basics - Networking",
-  "description": "Your app fetched this from a remote endpoint!",
-  "movies": [
-      {
-          "id": "1",
-          "title": "Star Wars",
-          "releaseYear": "1977"
-      },
-      {
-          "id": "2",
-          "title": "Back to the Future",
-          "releaseYear": "1985"
-      },
-      {
-          "id": "3",
-          "title": "The Matrix",
-          "releaseYear": "1999"
-      },
-      {
-          "id": "4",
-          "title": "Inception",
-          "releaseYear": "2010"
-      },
-      {
-          "id": "5",
-          "title": "Interstellar",
-          "releaseYear": "2014"
-      }
-  ]
-}
-
-console.log(infomation)
 
 module.exports = app;
