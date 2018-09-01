@@ -1,15 +1,14 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var userSchema = Schema({
+var employeeSchema = Schema({
     _id: Schema.Types.ObjectId,
     username: String,
     password: String,
-    type: String,
     age: Number,
     queues: [{ type: Schema.Types.ObjectId, ref: 'queues' }]
 });
 
-var User = mongoose.model('User', userSchema);
+var Employee = mongoose.model('Employee', employeeSchema);
 
-module.exports = User;
+module.exports = Employee;
